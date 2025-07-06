@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  github-auth:
+    image: docker.io/berkay1532/github-auth:latest
+    container_name: github-auth
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3030:3030"
+    environment:
+      - PORT=3030
+      - GITHUB_CLIENT_ID=Ov23li1JyJyNWvMjlBWT
+      - GITHUB_CLIENT_SECRET=c38eae951027b7f41d790c3be9800d1c12a766a0
+    restart: unless-stopped

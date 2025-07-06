@@ -1,0 +1,54 @@
+name: github-auth
+version: 0.1.0
+tee: tdx
+kind: container
+resources:
+  memory: 512
+  cpus: 1
+  storage:
+    kind: disk-persistent
+    size: 1000
+artifacts:
+  firmware: https://github.com/oasisprotocol/oasis-boot/releases/download/v0.5.0/ovmf.tdx.fd#db47100a7d6a0c1f6983be224137c3f8d7cb09b63bb1c7a5ee7829d8e994a42f
+  kernel: https://github.com/oasisprotocol/oasis-boot/releases/download/v0.5.0/stage1.bin#23877530413a661e9187aad2eccfc9660fc4f1a864a1fbad2f6c7d43512071ca
+  stage2: https://github.com/oasisprotocol/oasis-boot/releases/download/v0.5.0/stage2-podman.tar.bz2#631349bef06990dd6ae882812a0420f4b35f87f9fe945b274bcfb10fc08c4ea3
+  container:
+    runtime: https://github.com/oasisprotocol/oasis-sdk/releases/download/rofl-containers%2Fv0.5.2/rofl-containers#3abac3e7519588c1a4e250f1bf5cbbbd58c4e4c8ee817070031b9e0e3d4e0095
+    compose: docker-compose.yml
+deployments:
+  default:
+    app_id: rofl1qzk3lav2pw5hrcj6fnctt220l20eprvwlcy8k6ep
+    network: testnet
+    paratime: sapphire
+    admin: cannes
+    oci_repository: rofl.sh/be922292-ba66-4d0d-8016-48cd4ff7fd45:1751758156
+    trust_root:
+      height: 27372213
+      hash: 886daf7aca9e46d16aa2654b9a18d8f13560f01e5b20322b44fc7135a0ef4f8f
+    policy:
+      quotes:
+        pcs:
+          tcb_validity_period: 30
+          min_tcb_evaluation_data_number: 18
+          tdx: {}
+      enclaves:
+        - id: 59o/RjFQZ1+S24BsWhQ1ihHNtKts6WbCM1zZup7Sv1gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+        - id: xhC4ChoQdTTKCWjR5LZjup4nKuu7GcxAHsGp7NRGf+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+      endorsements:
+        - any: {}
+      fees: endorsing_node
+      max_expiration: 3
+    secrets:
+      - name: GITHUB_CLIENT_ID
+        value: pGJwa1ggNIpInCWr7fiJTEgteY8ZX84qgu6cyW8zgD4HMvnQwhVkbmFtZVggu6EsA9amzJYwa2iXciZzCuGSDcJ7B6+BwfYDFqRDcqplbm9uY2VPrlAPGAM68AtSEvAEcPkZZXZhbHVlWCTquWChoyULMbMC6Gu+lUZ+ZE4RHUquAPO83CdWirtFtWCQZ7w=
+      - name: GITHUB_CLIENT_SECRET
+        value: pGJwa1ggv734e1yShNvhD0kSP8nSt09ME1lYuqV31hAU4jSZwDJkbmFtZVgkgBmj3j77YgDJ7L2YMmFEXqzAHQpuYHaWlh24a7/plJFHQECWZW5vbmNlT/E9CordZXpNoH/e33LLKGV2YWx1ZVg47vs9SzdMLxHpS+f5RDTn7Nswdwf9VKfwju81qKy5cJCWQVTy7S2eZiB3sPY37ngiszvq5btlPgE=
+      - name: GITHUB_REDIRECT_URI
+        value: pGJwa1ggUiSUXb4oHu/PTITuGcRF+iy4UDPoYw2/jOVJ+N8y3wBkbmFtZVgjd4WNFpPQhw5cF3ZIXF3TnBvSxsBBmeP7Zaqz0nQ0dYdUBGtlbm9uY2VPbJy79ZW9pCcx3lQAAcWHZXZhbHVlWDPPmTnDjsIKO77fl+khY9pRsHkjz5iaWxH3LQWwyHD0IaZRe9ExQe7bZq18Y6QU12SmyEo=
+      - name: PORT
+        value: pGJwa1gg2UI2yQtteFpj4WIeKFCRCVXVEGOJijiO4cm9IjWURGRkbmFtZVREF7NMQwrjtQjjIRrLRzJdRMgxQWVub25jZU/a+xsODi1swEd3cnttLQdldmFsdWVUWOZadMZJPs6K1MSaHK1AIoUK6PM=
+    machines:
+      default:
+        provider: oasis1qp2ens0hsp7gh23wajxa4hpetkdek3swyyulyrmz
+        offer: playground_short
+        id: "0000000000000160"
